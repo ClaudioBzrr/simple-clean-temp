@@ -9,19 +9,23 @@ temp_path =  os.listdir(temp_folder)
 def clean_temp():
 
     for file in temp_path:
+
+        file_path = os.path.join(temp_folder,file) 
+        os.chmod(file_path, 0o777)
         
         try:
 
-            if os.path.exists(os.path.join(temp_folder,file)):
+            if os.path.exists(file_path):
 
-                os.remove(os.path.join(temp_folder,file))
+                os.remove(file_path)
         
-        except Exception as e:
+        except:
 
             try:
-                shutil.rmtree(os.path.join(temp_folder,file))
+
+                shutil.rmtree(file_path)
             
-            except Exception as e:
+            except:
 
                 pass
 
